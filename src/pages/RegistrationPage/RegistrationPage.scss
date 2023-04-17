@@ -1,0 +1,172 @@
+.register {
+  min-height: 100vh;
+
+  header {
+    background: #cadeef;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+
+    nav {
+      margin-left: 30px;
+
+      a {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 65px;
+
+    h1, h2, p {
+      margin: 0;
+    }
+
+    section {
+      margin-top: 15px;
+      margin-bottom: 15px;
+
+      .row {
+        display: flex;
+        flex-direction: row;
+
+        .col {
+          min-width: 460px;
+          display: flex;
+          flex-direction: column;
+
+          .clean-code-text-input input,
+          .clean-code-textarea-input textarea,
+          .clean-code-select-input .clean-code-react-select-container {
+            min-width: 300px;
+          }
+
+          .clean-code-textarea-input textarea {
+            max-width: 480px;
+            width: 100%;
+          }
+
+          .clean-code-textarea-input {
+            flex: 1;
+          }
+        }
+      }
+    }
+
+    section .row.submit {
+      align-items: center;
+
+      a {
+        margin-left: 30px
+      }
+    }
+
+    .clean-code-text-input,
+    .clean-code-textarea-input,
+    .clean-code-select-input {
+      padding-top: 30px;
+
+      label + div {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .clean-code-checkbox-input label {
+      font-size: 18px;
+    }
+
+    .terms label a {
+      color: #000 !important;
+    }
+  }
+
+  .button {
+    &.primary {
+      background-color: #646cff;
+      color: #fff;
+    }
+  }
+}
+
+.registration-success-modal {
+  padding: 50px 0 45px;
+
+  .title {
+    display: flex;
+    justify-content: center;
+
+    h2 {
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+      margin: 0;
+      font-family: Sanchez, sans-serif;
+    }
+  }
+
+  .details {
+    padding: 0 200px;
+
+    p {
+      background: #f0f0f0;
+      padding: 5px 15px;
+      font-family: Sanchez, sans-serif;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto auto auto;
+      padding: 0 16px 8px 16px;
+      border-bottom: 1px solid #dedede;
+
+      dt, dd {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 36px;
+      }
+
+      dt {
+        text-align: left;
+      }
+    }
+  }
+
+  .summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      padding-bottom: 30px;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 26px;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    button {
+      min-width: 100px;
+      text-transform: uppercase;
+      font-size: 24px;
+      line-height: 17px;
+      font-weight: 400;
+      padding: 10px;
+    }
+  }
+}

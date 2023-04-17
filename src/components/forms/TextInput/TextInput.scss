@@ -1,0 +1,34 @@
+.clean-code-text-input {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2em;
+  align-items: flex-start;
+
+  & > * {
+    min-width: 100px;
+  }
+
+  label {
+    margin-bottom: 7px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000;
+  }
+
+  input {
+    outline: 0;
+    padding: 8px 6px 4px 6px;
+    font-size: 12pt;
+    font-family: 'Roboto', serif;
+
+    background: #FFFFFF;
+    border: 1px solid #D0D4D9;
+  }
+
+  .error-label {
+    color: #ff0000;
+  }
+}

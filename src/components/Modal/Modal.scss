@@ -1,0 +1,42 @@
+.modal {
+  background: white;
+  border: 1px solid #959595;
+  box-shadow: 2.11309px 4.53154px 8px rgba(168, 176, 185, 0.541176);
+  padding: 50px 0 45px;
+  position: relative;
+
+  &:active,
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    outline: none;
+    appearance: none;
+  }
+
+  .modal-close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    outline: none;
+    border: none;
+    background: none;
+    padding: 12px 10px;
+
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  inset: 0;
+  background-color: rgba(40, 110, 130, 30%);
+}
