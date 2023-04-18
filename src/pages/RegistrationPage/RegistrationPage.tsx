@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Formik } from 'formik';
 
-import Modal from 'components/Modal/Modal';
-import TextAreaInput from 'components/forms/TextAreaInput';
-import TextInput from 'components/forms/TextInput';
-import CheckboxInput from 'components/forms/CheckboxInput';
 import Header from 'components/Header/Header';
+import FormikTextInput from 'components/formik/FormikTextInput/FormikTextInput';
+import FormikTextAreaInput from 'components/formik/FormikTextAreaInput/FormikTextAreaInput';
+import FormikCheckboxInput from 'components/formik/FormikCheckboxInput/FormikCheckboxInput';
 
 import RegistrationSuccessModal from './components/RegistrationSuccessModal/RegistrationSuccessModal';
 import useSchema from './hooks/useSchema';
@@ -14,7 +13,6 @@ import useOnSubmit from './hooks/useOnSubmit';
 import useModalState from './hooks/useModalState';
 
 import './RegistrationPage.scss';
-
 export interface RegistrationPageProps {
   onRegister: (data: RegisterFormData) => Promise<boolean>;
 }
@@ -33,53 +31,19 @@ const RegistrationPage = ({ onRegister }: RegistrationPageProps) => {
         <h1>Welcome to our register page!</h1>
 
         <Formik<RegisterFormData> initialValues={initialValues} onSubmit={onSubmit} validationSchema={schema}>
-          {({ submitForm, touched, errors, values, setFieldValue, setFieldTouched }) => (
-            <Form>
-              <section>
-                <TextInput
-                  touched={touched.name}
-                  error={errors.name}
-                  value={values.name}
-                  onChange={(event) => setFieldValue('name', event.target.value)}
-                  onBlur={() => setFieldTouched('name')}
-                  name="name"
-                  label="Name"
-                />
-                <TextInput
-                  touched={touched.email}
-                  error={errors.email}
-                  value={values.email}
-                  onChange={(event) => setFieldValue('email', event.target.value)}
-                  onBlur={() => setFieldTouched('email')}
-                  name="email"
-                  label="Email"
-                />
-                <TextAreaInput
-                  touched={touched.address}
-                  error={errors.address}
-                  value={values.address}
-                  onChange={(event) => setFieldValue('address', event.target.value)}
-                  onBlur={() => setFieldTouched('address')}
-                  name="address"
-                  label="Address"
-                />
-              </section>
-              <section className="terms">
-                <CheckboxInput
-                  touched={touched.terms}
-                  error={errors.terms}
-                  checked={values.terms}
-                  onChange={(event) => setFieldValue('terms', event.target.checked)}
-                  onBlur={() => setFieldTouched('terms')}
-                  name="terms"
-                  label="I agree to terms and conditions"
-                />
-              </section>
-              <section>
-                <button className="button primary">Register!</button>
-              </section>
-            </Form>
-          )}
+          <Form>
+            <section>
+              <FormikTextInput name="name" label="Name" />
+              <FormikTextInput name="email" label="Email" />
+              <FormikTextAreaInput name="address" label="Address" />
+            </section>
+            <section className="terms">
+              <FormikCheckboxInput name="terms" label="I agree to terms and conditions" />
+            </section>
+            <section>
+              <button className="button primary">Register!</button>
+            </section>
+          </Form>
         </Formik>
       </main>
       <RegistrationSuccessModal open={modalState.open} data={modalState.data} onClose={handleCloseModal} />
