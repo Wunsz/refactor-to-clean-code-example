@@ -5,6 +5,7 @@ import Modal from 'components/Modal/Modal';
 import TextAreaInput from 'components/forms/TextAreaInput';
 import TextInput from 'components/forms/TextInput';
 import CheckboxInput from 'components/forms/CheckboxInput';
+import Header from 'components/Header/Header';
 
 import useSchema from './hooks/useSchema';
 import useInitialValues, { RegisterFormData } from './hooks/useInitialValues';
@@ -27,14 +28,7 @@ const RegistrationPage = ({ onRegister }: RegistrationPageProps) => {
 
   return (
     <div className="register">
-      <header>
-        <div>Clean code register!</div>
-        <nav>
-          <a href="/">Home</a>
-          <a href="/login">Login</a>
-          <a href="/other">Other</a>
-        </nav>
-      </header>
+      <Header />
       <main>
         <h1>Welcome to our register page!</h1>
 
