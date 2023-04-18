@@ -7,9 +7,11 @@ import TextInput from 'components/forms/TextInput';
 import CheckboxInput from 'components/forms/CheckboxInput';
 import Header from 'components/Header/Header';
 
+import RegistrationSuccessModal from './components/RegistrationSuccessModal/RegistrationSuccessModal';
 import useSchema from './hooks/useSchema';
 import useInitialValues, { RegisterFormData } from './hooks/useInitialValues';
 import useOnSubmit from './hooks/useOnSubmit';
+import useModalState from './hooks/useModalState';
 
 import './RegistrationPage.scss';
 
@@ -18,13 +20,11 @@ export interface RegistrationPageProps {
 }
 
 const RegistrationPage = ({ onRegister }: RegistrationPageProps) => {
-  const [modalState, setModalState] = useState<{ open: true; data: RegisterFormData } | { open: false }>({
-    open: false,
-  });
+  const [modalState, handleOpenModal, handleCloseModal] = useModalState();
 
   const schema = useSchema();
   const initialValues = useInitialValues();
-  const onSubmit = useOnSubmit(onRegister, setModalState);
+  const onSubmit = useOnSubmit(onRegister, handleOpenModal);
 
   return (
     <div className="register">
@@ -82,32 +82,7 @@ const RegistrationPage = ({ onRegister }: RegistrationPageProps) => {
           )}
         </Formik>
       </main>
-      {modalState.open && (
-        <Modal isOpen={modalState.open} className="registration-success-modal">
-          <div className="title">
-            <h2>Registration successful!</h2>
-          </div>
-          <div className="details">
-            <p>Here are your details</p>
-            <dl>
-              <dt>Name</dt>
-              <dd>{modalState.data.name}</dd>
-
-              <dt>Email</dt>
-              <dd>{modalState.data.email}</dd>
-
-              <dt>Address</dt>
-              <dd>{modalState.data.address}</dd>
-            </dl>
-          </div>
-          <div className="summary">
-            <span>Your registration request will be processed within 24 hours!</span>
-            <button className="button secondary-filled" onClick={() => setModalState({ open: false })}>
-              Ok
-            </button>
-          </div>
-        </Modal>
-      )}
+      <RegistrationSuccessModal open={modalState.open} data={modalState.data} onClose={handleCloseModal} />
     </div>
   );
 };

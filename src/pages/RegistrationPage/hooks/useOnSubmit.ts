@@ -4,7 +4,7 @@ import { FormikHelpers } from 'formik';
 import { RegisterFormData } from './useInitialValues';
 const useOnSubmit = (
   onRegister: (values: RegisterFormData) => Promise<boolean>,
-  openModal: (state: { open: boolean; data: RegisterFormData }) => void,
+  openModal: (data: RegisterFormData) => void,
 ) =>
   useCallback(
     async (values: RegisterFormData, helpers: FormikHelpers<RegisterFormData>) => {
@@ -16,7 +16,7 @@ const useOnSubmit = (
           return;
         }
 
-        openModal({ open: true, data: values });
+        openModal(values);
       } catch (e) {
         if (e instanceof Error) {
           helpers.setFieldError('terms', e.message);
