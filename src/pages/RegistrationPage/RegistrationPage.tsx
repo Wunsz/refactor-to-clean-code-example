@@ -1,11 +1,14 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { Form, Formik, FormikHelpers } from 'formik';
-import * as yup from 'yup';
+import React, { useState } from 'react';
+import { Form, Formik } from 'formik';
 
 import Modal from 'components/Modal/Modal';
 import TextAreaInput from 'components/forms/TextAreaInput';
 import TextInput from 'components/forms/TextInput';
 import CheckboxInput from 'components/forms/CheckboxInput';
+
+import useSchema from './hooks/useSchema';
+import useInitialValues, { RegisterFormData } from './hooks/useInitialValues';
+import useOnSubmit from './hooks/useOnSubmit';
 
 import './RegistrationPage.scss';
 
@@ -13,57 +16,14 @@ export interface RegistrationPageProps {
   onRegister: (data: RegisterFormData) => Promise<boolean>;
 }
 
-export interface RegisterFormData {
-  name: string;
-  email: string;
-  address: string;
-  terms: boolean;
-}
-
 const RegistrationPage = ({ onRegister }: RegistrationPageProps) => {
   const [modalState, setModalState] = useState<{ open: true; data: RegisterFormData } | { open: false }>({
     open: false,
   });
 
-  const schema = useMemo(
-    () =>
-      yup.object().shape({
-        email: yup.string().required('This field is required'),
-        address: yup.string().required('This field is required'),
-        terms: yup.boolean().isTrue('This field is required').required('This field is required'),
-      }),
-    [],
-  );
-
-  const initialValues = useMemo(
-    (): RegisterFormData => ({
-      name: '',
-      email: '',
-      address: '',
-      terms: false,
-    }),
-    [],
-  );
-
-  const onSubmit = useCallback(async (values: RegisterFormData, helpers: FormikHelpers<RegisterFormData>) => {
-    try {
-      const isSuccess = await onRegister(values);
-
-      if (!isSuccess) {
-        helpers.setFieldError('terms', 'API Error - try again!');
-        return;
-      }
-
-      setModalState({
-        open: true,
-        data: values,
-      });
-    } catch (e) {
-      if (e instanceof Error) {
-        helpers.setFieldError('terms', e.message);
-      }
-    }
-  }, []);
+  const schema = useSchema();
+  const initialValues = useInitialValues();
+  const onSubmit = useOnSubmit(onRegister, setModalState);
 
   return (
     <div className="register">
