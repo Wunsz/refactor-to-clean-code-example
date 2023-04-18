@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 
 import Header from 'components/Header/Header';
+import Button from 'components/Button/Button';
 import FormikTextInput from 'components/formik/FormikTextInput/FormikTextInput';
 import FormikTextAreaInput from 'components/formik/FormikTextAreaInput/FormikTextAreaInput';
 import FormikCheckboxInput from 'components/formik/FormikCheckboxInput/FormikCheckboxInput';
@@ -41,7 +42,7 @@ const RegistrationPage = ({ onRegister }: RegistrationPageProps) => {
               <FormikCheckboxInput name="terms" label="I agree to terms and conditions" />
             </section>
             <section>
-              <button className="button primary">Register!</button>
+              <Button type="submit">Register!</Button>
             </section>
           </Form>
         </Formik>

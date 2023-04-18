@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Modal from 'components/Modal/Modal';
+import Button from 'components/Button/Button';
 
 import { RegisterFormData } from '../../hooks/useInitialValues';
 
@@ -37,9 +38,9 @@ const RegistrationSuccessModal = ({ open, data, onClose }: RegistrationSuccessMo
       </div>
       <div className="summary">
         <span>Your registration request will be processed within 24 hours!</span>
-        <button className="button secondary-filled" onClick={onClose}>
+        <Button variant="secondary" onClick={onClose}>
           Ok
-        </button>
+        </Button>
       </div>
     </Modal>
   );
